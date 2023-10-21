@@ -31,7 +31,12 @@
       </ion-content>
       <ion-footer>
         <ion-toolbar>
-          <ion-title>Footer im Menü</ion-title>
+          <ion-buttons>
+            <ion-button *ngIf="authService.currentUser() | async" (click)="authService.logout()" color="primary">
+              <ion-icon class="ion-padding-end" name="log-out"></ion-icon>
+              Logout
+            </ion-button>
+          </ion-buttons>
         </ion-toolbar>
       </ion-footer>
     </ion-menu>
