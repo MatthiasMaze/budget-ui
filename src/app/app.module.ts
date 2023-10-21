@@ -10,11 +10,13 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {LoginComponent} from "./shared/login/login.component";
 
 registerLocaleData(locale);
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginComponent],
+
   imports: [
     AppRoutingModule,
     AngularFireAuthModule,
@@ -22,6 +24,8 @@ registerLocaleData(locale);
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(),
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'CHF' },
