@@ -21,6 +21,10 @@
         <ion-icon slot="start" name="close"></ion-icon>
         Cancel
       </ion-button>
+      <ion-button (click)="save()" [disabled]="categoryForm.pristine || categoryForm.invalid || submitting">
+        <ion-icon slot="start" name="save"></ion-icon>
+        Save
+      </ion-button>
     </ion-buttons>
 
   </ion-toolbar>
