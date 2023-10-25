@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import {Category, CategoryCriteria} from '../../shared/domain';
 import {CategoryService} from "../category.service";
 import {ToastService} from "../../shared/service/toast.service";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-category-list',
@@ -20,12 +21,35 @@ export class CategoryListComponent {
     private readonly categoryService: CategoryService,
     private readonly toastService: ToastService
   ) {}
+  private loadCategories(next: () => void = () => {}): void {
+    if (!this.searchCriteria.name) delete this.searchCriteria.name;
+    this.loading = true;
+    this.categoryService
+      .getCategories(this.searchCriteria)
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          next();
+        }),
+      )
+      .subscribe({
+        next: (categories) => {
+          if (this.searchCriteria.page === 0 || !this.categories) this.categories = [];
+          this.categories.push(...categories.content);
+          this.lastPageReached = categories.last;
+        },
+        error: (error) => this.toastService.displayErrorToast('Could not load categories', error),
+      });
 
+  }
 
   async openModal(category?: Category): Promise<void> {
     const modal = await this.modalCtrl.create({ component: CategoryModalComponent });
     modal.present();
     const { role } = await modal.onWillDismiss();
     console.log('role', role);
+  }
+  ionViewDidEnter(): void {
+    this.loadCategories();
   }
 }
