@@ -30,7 +30,6 @@ export class CategoryListComponent {
     private readonly modalCtrl: ModalController,
     private readonly categoryService: CategoryService,
     private readonly toastService: ToastService,
-
     private readonly formBuilder: FormBuilder,
   ) {
     this.searchForm = this.formBuilder.group({name: [], sort: [this.initialSort]});
@@ -67,9 +66,12 @@ export class CategoryListComponent {
   }
 
   async openModal(category?: Category): Promise<void> {
-    const modal = await this.modalCtrl.create({component: CategoryModalComponent});
+    const modal = await this.modalCtrl.create({
+      component: CategoryModalComponent,
+      componentProps: { category: category ? { ...category } : {} },
+    });
     modal.present();
-    const {role} = await modal.onWillDismiss();
+    const { role } = await modal.onWillDismiss();
     if (role === 'refresh') this.reloadCategories();
   }
 
