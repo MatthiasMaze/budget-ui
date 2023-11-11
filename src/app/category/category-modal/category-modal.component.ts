@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
-import {ModalController} from '@ionic/angular';
-import {ActionSheetService} from '../../shared/service/action-sheet.service';
-import {filter, finalize, from, mergeMap, tap} from 'rxjs';
-import {CategoryService} from "../category.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ToastService} from "../../shared/service/toast.service";
-import {Category} from "../../shared/domain";
+import { Component } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ActionSheetService } from '../../shared/service/action-sheet.service';
+import { filter, finalize, from, mergeMap, tap } from 'rxjs';
+import { CategoryService } from '../category.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastService } from '../../shared/service/toast.service';
+import { Category } from '../../shared/domain';
 
 @Component({
   selector: 'app-category-modal',
@@ -15,12 +15,13 @@ export class CategoryModalComponent {
   readonly categoryForm: FormGroup;
   submitting = false;
   category: Category = {} as Category;
+
   constructor(
     private readonly actionSheetService: ActionSheetService,
     private readonly categoryService: CategoryService,
     private readonly formBuilder: FormBuilder,
     private readonly modalCtrl: ModalController,
-    private readonly toastService: ToastService
+    private readonly toastService: ToastService,
   ) {
     this.categoryForm = this.formBuilder.group({
       id: [], // hidden
@@ -31,9 +32,11 @@ export class CategoryModalComponent {
   cancel(): void {
     this.modalCtrl.dismiss(null, 'cancel');
   }
+
   ionViewWillEnter(): void {
     this.categoryForm.patchValue(this.category);
   }
+
   save(): void {
     this.submitting = true;
     this.categoryService
