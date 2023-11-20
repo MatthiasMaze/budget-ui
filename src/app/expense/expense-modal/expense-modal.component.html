@@ -1,4 +1,4 @@
-Expense Modal
+
 <!-- ------ -->
 <!-- Header -->
 <!-- ------ -->
@@ -21,19 +21,40 @@ Expense Modal
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <!-- ------- -->
 <!-- Content -->
 <!-- ------- -->
-<ion-content class="ion-padding">
-  <ion-item>
-    <ion-icon name="text" slot="start"></ion-icon>
-    <ion-input maxlength="40" placeholder="Enter the category's name" required></ion-input>
-  </ion-item>
-
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button (click)="delete()" color="danger">
-      <ion-icon name="trash"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-</ion-content>
+<ion-item>
+  <ion-icon slot='start' name='text'></ion-icon>
+  <ion-input placeholder="Enter the expense's name"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-icon slot='start' name='pricetag'></ion-icon>
+  <ion-select interface='popover' placeholder='Choose a category'>
+    <ion-select-option role='option'>
+    </ion-select-option>
+  </ion-select>
+  <ion-button color="danger" slot='end' (click)='showCategoryModal()'>
+    <ion-icon slot='icon-only' name='add'></ion-icon>
+  </ion-button>
+</ion-item>
+<ion-item>
+  <ion-icon slot='start' name='cash-outline'></ion-icon>
+  <ion-input type='number' inputmode='decimal' placeholder="Enter the amount in CHF"></ion-input>
+  <ion-note slot='end'>CHF</ion-note>
+</ion-item>
+<ion-item>
+  <ion-icon slot='start' name="calendar-number-outline"></ion-icon>
+  <ion-datetime-button datetime='datetime'></ion-datetime-button>
+  <ion-modal [keepContentsMounted]='true'>
+    <ng-template>
+      <ion-datetime color="primary" presentation='date-time' id='datetime' formControlName='date'><span slot="title">Choose Date</span>
+      </ion-datetime>
+    </ng-template>
+  </ion-modal>
+</ion-item>
+<ion-fab slot='fixed' vertical='bottom' horizontal='end'>
+  <ion-fab-button (click)='delete()' color='danger'>
+    <ion-icon name='trash-outline'></ion-icon>
+  </ion-fab-button>
+</ion-fab>
