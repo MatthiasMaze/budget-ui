@@ -2,7 +2,13 @@
 <!-- Header -->
 <!-- ------ -->
 <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Expenses</ion-title>
 
+  </ion-toolbar>
 </ion-header>
 <ion-fab slot="fixed" vertical="bottom" horizontal="end">
   <ion-fab-button>
@@ -21,11 +27,37 @@
   </ion-fab-list>
 </ion-fab>
 
-
 <ion-content class="ion-padding">
 
   <ion-grid class="ion-padding">
     <ion-row>
+      <ion-col size="9" size-sm="4">
+        <ion-item>
+          <ion-ripple-effect>
+          </ion-ripple-effect>
+          <ion-icon name="swap-vertical" role="img" slot="start"></ion-icon>
+          <ion-select interface="popover">
+            <ion-select-option role="option">
+              Created at (newest first)
+            </ion-select-option>
+            <ion-select-option role="option">
+              Created at (oldest first)
+            </ion-select-option>
+            <ion-select-option role="option">
+              Date (newest first)
+            </ion-select-option>
+            <ion-select-option role="option">
+              Date (oldest first)
+            </ion-select-option>
+            <ion-select-option role="option">
+              Name (A-Z)
+            </ion-select-option>
+            <ion-select-option role="option">
+              Name (Z-A)
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
       <ion-col size="9" size-sm="4">
         <ion-item>
           <ion-icon class="md hydrated" name="swap-vertical" role="img" slot="start"></ion-icon>
@@ -46,15 +78,8 @@
   <h1>Content</h1>
 </ion-content>
 <!-- Categories -->
-<ion-item button="true" [detail]="true" (click)="openModal()">
-  <ion-label>Auswärts Essen</ion-label>
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button (click)="openModal()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
 
-  </ion-fab>
-</ion-item>
+
 <ion-toolbar>
   <ion-buttons slot='start'>
     <ion-button type='button' (click)='addMonths(-1)'>
