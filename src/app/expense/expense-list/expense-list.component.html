@@ -38,7 +38,6 @@
       </ion-col>
       <ion-col size="9" size-sm="4">
         <ion-item>
-
           <ion-icon class="md hydrated" name="swap-vertical" role="img" slot="start"></ion-icon>
           <ion-select interface="popover" placeholder="Categories">
             <ion-select-option></ion-select-option>
@@ -65,6 +64,10 @@
 </ion-content>
 
 <!-- Categories -->
+
+<!-- ------ -->
+<!-- Footer -->
+<!-- ------ -->
 <ion-toolbar>
   <ion-buttons slot='start'>
     <ion-button type='button' (click)='addMonths(-1)'>
@@ -79,6 +82,4 @@
   <ion-title>{{ date | date:'MMMM yyyy' }}
   </ion-title>
 </ion-toolbar>
-<!-- ------ -->
-<!-- Footer -->
-<!-- ------ -->
+
