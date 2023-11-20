@@ -54,6 +54,7 @@
       </ion-col>
       <ion-col size="9" size-sm="4">
         <ion-item>
+
           <ion-icon class="md hydrated" name="swap-vertical" role="img" slot="start"></ion-icon>
           <ion-select interface="popover" placeholder="Categories">
             <ion-select-option></ion-select-option>
@@ -69,7 +70,15 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
   <h1>Content</h1>
+  <!-- Fab-Button -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="openModal()">
+      <ion-icon name="add" role="img"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
 <!-- Categories -->
 
@@ -87,5 +96,7 @@
   </ion-buttons>
   <ion-title>{{ date | date:'MMMM yyyy' }}
   </ion-title>
-
 </ion-toolbar>
+<!-- ------ -->
+<!-- Footer -->
+<!-- ------ -->
