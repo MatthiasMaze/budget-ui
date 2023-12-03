@@ -71,26 +71,24 @@ export class ExpenseModalComponent implements OnInit {
 
   delete(): void {
     from(this.actionSheetService.showDeletionConfirmation('Are you sure you want to delete this expense?'))
-      .pipe(filter((action) => action === 'delete'))
-      .subscribe(() => this.modalCtrl.dismiss(null, 'delete'));
-    filter((action) => action === 'delete'),
-      mergeMap(() => {
-        this.submitting = true;
-        return this.expenseService.deleteExpense(this.expense.id!);
-      }),
-  )
-
-    subscribe({
-      next: () => {
-        this.toastService.displaySuccessToast('Expense deleted');
-        this.modalCtrl.dismiss(null, 'refresh');
-        this.submitting = false;
-      },
-      error: (error) => {
-        this.toastService.displayErrorToast('Could not delete expense', error);
-        this.submitting = false;
-      },
-    });
+      .pipe(
+        filter((action) => action === 'delete'),
+        mergeMap(() => {
+          this.submitting = true;
+          return this.expenseService.deleteExpense(this.expense.id!);
+        }),
+      )
+      .subscribe({
+        next: () => {
+          this.toastService.displaySuccessToast('Expense deleted');
+          this.modalCtrl.dismiss(null, 'refresh');
+          this.submitting = false;
+        },
+        error: (error) => {
+          this.toastService.displayErrorToast('Could not delete expense', error);
+          this.submitting = false;
+        },
+      });
   }
 
   async showCategoryModal(): Promise<void> {
