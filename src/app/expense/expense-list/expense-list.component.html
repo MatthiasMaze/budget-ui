@@ -72,7 +72,7 @@
   </ion-refresher>
 
   <!-- Infinite Scroll -->
-  <ion-infinite-scroll [disabled]="lastPageReached || loading" (ionInfinite)="loadNextCategoryPage($event)">
+  <ion-infinite-scroll [disabled]="lastPageReached || loading" (ionInfinite)="loadNextExpensePage($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
