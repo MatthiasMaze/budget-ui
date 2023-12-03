@@ -19,7 +19,7 @@
           <ion-ripple-effect>
           </ion-ripple-effect>
           <ion-icon slot='start' name='pricetag'></ion-icon>
-          <ion-select interface='popover'  placeholder='Select a category'>
+          <ion-select interface='popover'  placeholder="Created at (newest first)">
             <ion-select-option role='option'>
               Created at (newest first)
             </ion-select-option>
@@ -58,7 +58,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
     <ion-item>
       <ion-label>
         No expenses found
@@ -67,7 +66,11 @@
       </ion-icon>
     </ion-item>
 
-  <h1>Content</h1>
+  <!-- Refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="reloadExpenses($event)" [disabled]="loading">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <!-- Fab-Button -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="primary" (click)="openModal()">
