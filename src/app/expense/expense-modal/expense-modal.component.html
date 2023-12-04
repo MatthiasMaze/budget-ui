@@ -3,19 +3,23 @@
 <!-- ------ -->
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot='start' (click)='cancel()'>
-      <ion-button type='button' color='default'>
-        <ion-icon slot='start' name="close-circle-outline"></ion-icon>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">
+        <ion-icon slot="start" name="close"></ion-icon>
         Cancel
       </ion-button>
     </ion-buttons>
     <ion-title>
       <ng-template>Add Expense</ng-template>
     </ion-title>
-    <ion-buttons slot='end'>
-      <ion-button type='button' color='default' (click)='save()'>
-        <ion-icon slot='start' name='save-outline'></ion-icon>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()" [disabled]="expenseForm.pristine || expenseForm.invalid || submitting">
+        <ion-icon slot="start" name="save"></ion-icon>
         Save
+      </ion-button>
+      <ion-button color="medium" (click)="cancel()" [disabled]="submitting">
+        <ion-icon slot="start" name="close"></ion-icon>
+        Cancel
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
