@@ -9,9 +9,9 @@
         Cancel
       </ion-button>
     </ion-buttons>
-    <ion-title>
-      <ng-template>Add Expense</ng-template>
-    </ion-title>
+
+      <ion-title>{{expense.id ? 'Edit' : 'Add'}} expense</ion-title>
+
     <ion-buttons slot="end">
       <ion-button (click)="save()" [disabled]="expenseForm.pristine || expenseForm.invalid || submitting">
         <ion-icon slot="start" name="save"></ion-icon>
