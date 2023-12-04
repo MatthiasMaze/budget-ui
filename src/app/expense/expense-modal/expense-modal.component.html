@@ -27,10 +27,12 @@
 <!-- ------- -->
 <!-- Content -->
 <!-- ------- -->
-<ion-item class="custom-item">
-  <ion-icon slot='start' name='text'></ion-icon>
-  <ion-input placeholder="Enter the expense's name"></ion-input>
-</ion-item>
+<ion-content class="ion-padding" [formGroup]="expenseForm">
+  <ion-item class="custom-item">
+    <ion-icon slot="start" name="text"></ion-icon>
+    <ion-input placeholder="Enter the expense's name" formControlName="name" [disabled]="submitting"></ion-input>
+  </ion-item>
+
 
 <ion-item class="custom-item">
   <ion-icon slot='start' name='pricetag'></ion-icon>
@@ -59,7 +61,7 @@
     </ng-template>
   </ion-modal>
 </ion-item>
-
+</ion-content>
 <ion-fab *ngIf="expense.id" slot="fixed" vertical="bottom" horizontal="end">
   <ion-fab-button (click)="delete()" color="danger" [disabled]="submitting">
     <ion-icon name="trash"></ion-icon>
